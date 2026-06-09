@@ -15,7 +15,7 @@ on:
 jobs:
   build:
     name: Build & Validate SQL Project
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
 
@@ -39,7 +39,7 @@ jobs:
 
   deploy_development:
     name: Deploy to Development
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: build
     steps:
       - name: Download dacpac artifact
@@ -59,8 +59,8 @@ jobs:
 
   deploy_qa:
     name: Deploy to QA
-    runs-on: ubuntu-latest
-    needs: development
+    runs-on: self-hosted
+    needs: deploy_development
     steps:
       - name: Download dacpac artifact
         uses: actions/download-artifact@v4
@@ -79,9 +79,9 @@ jobs:
 
   deploy_production:
     name: Deploy to Production
-    runs-on: ubuntu-latest
-    needs: qa
-      environment: Production
+    runs-on: self-hosted
+    needs: deploy_qa
+    environment: Production
     steps:
       - name: Download dacpac artifact
         uses: actions/download-artifact@v4
@@ -97,4 +97,3 @@ jobs:
             /SourceFile:*.dacpac \
             /TargetConnectionString:"${{ secrets.PRODUCTION_CONNECTION_STRING }}" \
             /p:BlockOnPossibleDataLoss=true
-
