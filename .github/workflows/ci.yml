@@ -1,5 +1,8 @@
 name: RetailAnalytics — SQL Database CI/CD
 
+env:
+  DOTNET_INSTALL_DIR: ${{ runner.temp }}/.dotnet
+
 on:
   push:
     branches: [main]
