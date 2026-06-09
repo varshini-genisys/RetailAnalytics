@@ -1,8 +1,5 @@
 name: RetailAnalytics — SQL Database CI/CD
 
-env:
-  DOTNET_INSTALL_DIR: ${{ runner.temp }}/.dotnet
-
 on:
   push:
     branches: [main]
@@ -19,6 +16,8 @@ jobs:
   build:
     name: Build & Validate SQL Project
     runs-on: self-hosted
+    env:
+      DOTNET_INSTALL_DIR: ${{ runner.temp }}/.dotnet
     steps:
       - uses: actions/checkout@v4
 
@@ -44,6 +43,8 @@ jobs:
     name: Deploy to Development
     runs-on: self-hosted
     needs: build
+    env:
+      DOTNET_INSTALL_DIR: ${{ runner.temp }}/.dotnet
     steps:
       - name: Download dacpac artifact
         uses: actions/download-artifact@v4
@@ -64,6 +65,8 @@ jobs:
     name: Deploy to QA
     runs-on: self-hosted
     needs: deploy_development
+    env:
+      DOTNET_INSTALL_DIR: ${{ runner.temp }}/.dotnet
     steps:
       - name: Download dacpac artifact
         uses: actions/download-artifact@v4
@@ -85,6 +88,8 @@ jobs:
     runs-on: self-hosted
     needs: deploy_qa
     environment: Production
+    env:
+      DOTNET_INSTALL_DIR: ${{ runner.temp }}/.dotnet
     steps:
       - name: Download dacpac artifact
         uses: actions/download-artifact@v4
