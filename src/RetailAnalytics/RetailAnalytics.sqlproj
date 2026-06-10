@@ -1,5 +1,5 @@
 <Project DefaultTargets="Build">
-  <Sdk Name="Microsoft.Build.Sql" Version="0.2.3-preview" />
+  <Sdk Name="Microsoft.Build.Sql" Version="2.0.0" />
   <PropertyGroup>
     <Name>RetailAnalytics</Name>
     <DSP>Microsoft.Data.Tools.Schema.Sql.SqlServer2022</DSP>
