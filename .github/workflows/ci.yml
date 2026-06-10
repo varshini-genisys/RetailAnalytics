@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'src/RetailAnalytics/RetailAnalytics.sqlproj/**'
+      - 'src/RetailAnalytics/**'
   workflow_dispatch:
     inputs:
       environment:

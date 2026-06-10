@@ -7,4 +7,5 @@
     <RunSqlCodeAnalysis>true</RunSqlCodeAnalysis>
     <SqlServerVerification>false</SqlServerVerification>
   </PropertyGroup>
+  <!-- trigger CI run -->
 </Project>
