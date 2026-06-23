@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'src/RetailAnalytics/**'
+      - 'src/RetailAnalytics/RetailAnalytics.sqlproj/**'
   workflow_dispatch:
     inputs:
       environment:
@@ -108,3 +108,4 @@ jobs:
 
       - name: Deploy to Production
         run: sqlpackage /Action:Publish /SourceFile:src/RetailAnalytics/bin/Release/RetailAnalytics.dacpac /TargetConnectionString:"${{ secrets.PRODUCTION_CONNECTION_STRING }}" /p:BlockOnPossibleDataLoss=true
+
